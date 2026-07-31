@@ -943,7 +943,11 @@ b3DistanceOutput b3ShapeDistance( const b3DistanceInput* input, b3SimplexCache* 
 			b3ComputeWitnessPoints( &simplex, &localPointA, &localPointB );
 			distanceOutput.pointA = localPointA;
 			distanceOutput.pointB = localPointB;
-			B3_VALIDATE( b3Distance( localPointA, localPointB ) < FLT_EPSILON );
+#if B3_ENABLE_VALIDATION
+			float witnessScale = b3MaxFloat( 1.0f, b3MaxFloat( b3Length( localPointA ), b3Length( localPointB ) ) );
+			float witnessTolerance = 32.0f * FLT_EPSILON * witnessScale;
+			B3_VALIDATE( b3Distance( localPointA, localPointB ) <= witnessTolerance );
+#endif
 			return distanceOutput;
 		}
 

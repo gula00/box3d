@@ -298,12 +298,34 @@ static int LargeWorldAABBTest( void )
 	return 0;
 }
 
+static int DynamicTreeDeleteEnlargedProxyTest( void )
+{
+	b3DynamicTree tree = b3DynamicTree_Create( 4 );
+	b3AABB a = { { -0.5f, -0.5f, -0.5f }, { 0.5f, 0.5f, 0.5f } };
+	b3AABB b = { { 0.6f, -0.5f, -0.5f }, { 1.6f, 0.5f, 0.5f } };
+	b3AABB c = { { 99.5f, -0.5f, -0.5f }, { 100.5f, 0.5f, 0.5f } };
+	int proxyA = b3DynamicTree_CreateProxy( &tree, a, B3_DEFAULT_CATEGORY_BITS, 1 );
+	int proxyB = b3DynamicTree_CreateProxy( &tree, b, B3_DEFAULT_CATEGORY_BITS, 2 );
+	int proxyC = b3DynamicTree_CreateProxy( &tree, c, B3_DEFAULT_CATEGORY_BITS, 3 );
+
+	b3AABB enlargedA = { { -1.0f, -1.0f, -1.0f }, { 1.0f, 1.0f, 1.0f } };
+	b3DynamicTree_EnlargeProxy( &tree, proxyA, enlargedA );
+	b3DynamicTree_DestroyProxy( &tree, proxyA );
+	b3DynamicTree_ValidateNoEnlarged( &tree );
+
+	b3DynamicTree_DestroyProxy( &tree, proxyB );
+	b3DynamicTree_DestroyProxy( &tree, proxyC );
+	b3DynamicTree_Destroy( &tree );
+	return 0;
+}
+
 int CollisionTest( void )
 {
 	RUN_SUBTEST( AABBTest );
 	RUN_SUBTEST( TestRayAABBIntersection );
 	RUN_SUBTEST( LargeWorldManifoldTest );
 	RUN_SUBTEST( LargeWorldAABBTest );
+	RUN_SUBTEST( DynamicTreeDeleteEnlargedProxyTest );
 
 	return 0;
 }

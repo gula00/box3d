@@ -182,6 +182,38 @@ set(SAMPLE_FILES
     sample_stacking.cpp
     sample_tree.cpp
     sample_world.cpp
+    voxel_destruction/voxel_body.cpp
+    voxel_destruction/voxel_body.h
+    voxel_destruction/voxel_body_update.cpp
+    voxel_destruction/voxel_body_update.h
+    voxel_destruction/voxel_chunk_mesh.cpp
+    voxel_destruction/voxel_chunk_mesh.h
+    voxel_destruction/voxel_collider.cpp
+    voxel_destruction/voxel_collider.h
+    voxel_destruction/voxel_connectivity.cpp
+    voxel_destruction/voxel_connectivity.h
+    voxel_destruction/voxel_demo.cpp
+    voxel_destruction/voxel_deflate.cpp
+    voxel_destruction/voxel_deflate.h
+    voxel_destruction/voxel_editing.cpp
+    voxel_destruction/voxel_editing.h
+    voxel_destruction/voxel_fracture.cpp
+    voxel_destruction/voxel_fracture.h
+    voxel_destruction/voxel_job_system.cpp
+    voxel_destruction/voxel_job_system.h
+    voxel_destruction/voxel_obj_import.cpp
+    voxel_destruction/voxel_obj_import.h
+    voxel_destruction/voxel_piece.cpp
+    voxel_destruction/voxel_piece.h
+    voxel_destruction/voxel_replace_updater.cpp
+    voxel_destruction/voxel_replace_updater.h
+    voxel_destruction/voxel_serialization.cpp
+    voxel_destruction/voxel_serialization.h
+    voxel_destruction/voxel_self_test.cpp
+    voxel_destruction/voxel_self_test.h
+    voxel_destruction/voxel_types.h
+    voxel_destruction/voxel_voxelizer.cpp
+    voxel_destruction/voxel_voxelizer.h
 )
 
 add_executable(samples ${SAMPLE_FILES})

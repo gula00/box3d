@@ -741,6 +741,7 @@ static void b3RemoveLeaf( b3DynamicTree* tree, int leaf )
 			node->aabb = b3AABB_Union( child1->aabb, child2->aabb );
 			node->categoryBits = child1->categoryBits | child2->categoryBits;
 			node->height = 1 + b3MaxUInt16( child1->height, child2->height );
+			node->flags = ( node->flags & ~b3_enlargedNode ) | ( ( child1->flags | child2->flags ) & b3_enlargedNode );
 
 			index = node->parent;
 		}
